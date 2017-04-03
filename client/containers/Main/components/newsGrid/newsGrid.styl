@@ -1,0 +1,61 @@
+.notes-grid {
+    display flex
+    flex-wrap wrap
+}
+
+.article
+    background #fff
+    display block
+    margin-bottom 20px
+    box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+    border-radius: 2px;
+
+    @media screen and (min-width: 660px)
+        width: 48%
+        margin: 1%
+
+    @media screen and (min-width: 1024px)
+        width: 31%
+        margin: 1%
+
+    .image
+        width 100%
+        position relative
+
+    .author
+        position absolute
+        left 0
+        bottom 0
+        background #ef5a31
+        color #fff
+        padding: 10px;
+
+    .date
+        position absolute
+        top 20px
+        right 20px
+        background #ef5a31
+        color #fff
+        padding: 10px;
+        border-radius 50%
+        text-align center
+        width 56px
+        height 56px
+        text-transform uppercase
+
+    .title
+        font-size 1.2rem
+        margin-bottom: 10px
+        display block
+        color: #000
+
+    .description {
+        color #ef5a31
+    }
+
+    img
+        width 100%
+        display block
+
+    .article-metadata
+        padding 10px
