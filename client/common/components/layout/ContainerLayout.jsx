@@ -3,17 +3,15 @@ import withStore from 'common/components/withStore/withStore';
 import 'icon.png';
 
 const Layout = React.createClass({
+    componentWillMount() {
+        this.props.store.dispatch({
+            type: 'tryToRestore'
+        });
+    },
     render () {
         return (
-            <div>
-                <header>
-                    <a href="#" className="logo">
-                        <img src="images/icon.png"/>
-                    </a>
-                </header>
-                <div className="main-content">
-                    {this.props.children}
-                </div>
+            <div className="main-content" id="app">
+                {this.props.children}
             </div>
         );
     }

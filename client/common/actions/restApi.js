@@ -1,19 +1,19 @@
 import request from 'superagent';
 import config from '../config/config';
 
-function restApi({model, method='get', params = {}, type} = {}) {
+function restApi({model, id='', method='get', params = {}, type} = {}) {
     return (dispatch, getState) => {
         const payload = getState()[model] && getState()[model].payload;
 
         dispatch({
             type: 'startProcessing',
-            reqData: {model, params, type}
+            reqData: {model, params, type, id}
         });
 
-        params.apiKey = config.apiKey;
+        const path = id ? `/${id}` : '';
 
         let processedParams = Object.keys(params).map((key) => `${key}=${params[key]}`).join('&');
-        return request[method](`${config.restURL}/${model}?${processedParams}`)
+        return request[method](`${config.restURL}/${model}${path}?${processedParams}`)
             .set('Accept', 'application/json')
             .send(payload)
             .end((err, res) => {
@@ -21,11 +21,11 @@ function restApi({model, method='get', params = {}, type} = {}) {
 
                 const dataForDispatcher = error ? {
                     type: 'errProcessing',
-                    reqData: {model, params, type},
+                    reqData: {model, params, type, id},
                     resData: error
                 } : {
                     type: 'endProcessing',
-                    reqData: {model, params, type},
+                    reqData: {model, params, type, id},
                     resData: res.body
                 };
 
