@@ -25,7 +25,7 @@ const MainPage = React.createClass({
     render() {
         return <div className="screen-container">
             <div className="logo-wrapper">
-                <img src="/images/screen-logo.png" alt="Interview Helper"/>
+                <img src="images/screen-logo.png" alt="Interview Helper"/>
             </div>
             <div className="align-center">
                 <TextField
