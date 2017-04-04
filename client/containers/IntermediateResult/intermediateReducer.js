@@ -15,7 +15,7 @@ export default function (state, action) {
             activeTopicId = null;
             setTimeout(() => window.location.hash = 'topics');
         } else {
-            alert('all done');
+            setTimeout(() => window.location.hash = 'result');
         }
 
         return update(

@@ -35,7 +35,6 @@ const PositionsPage = React.createClass({
 
     render() {
         const interview = this.props.data.interview;
-
         const mainContent = <div>
             <h3 className="align-center">Choose a position</h3>
             <List>

@@ -5,5 +5,10 @@ export default function (storageKey, actionsForSet) {
         if (actionsForSet.indexOf(action.type) > -1) {
             memoryStorage.set(storageKey, state);
         }
+
+        if (action.type === 'clearStorageAndGoHome') {
+            memoryStorage.remove(storageKey);
+            setTimeout(() => window.location.hash = '');
+        }
     };
 }

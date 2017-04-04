@@ -44,11 +44,15 @@ const marks = [
 const TopicPage = React.createClass({
     componentWillMount() {
         const themeId = this.props.data.interview.activeThemeId;
-        if (this.props.data.interview.topics[themeId]) return;
-        this.props.store.dispatch(restApi({
-            model: 'topics',
-            id: themeId
-        }));
+        if (!themeId) {
+            this.props.store.dispatch({type: 'clearStorageAndGoHome'});
+        } else {
+            if (this.props.data.interview.topics[themeId]) return;
+            this.props.store.dispatch(restApi({
+                model: 'topics',
+                id: themeId
+            }));
+        }
     },
 
     openNext() {

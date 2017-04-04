@@ -8,6 +8,7 @@ import PositionsScreenPage from 'containers/PositionsScreen/ContainerPositionsSc
 import SelectThemesScreen from 'containers/SelectThemesScreen/ContainerSelectThemesScreenPage';
 import TopicsPage from 'containers/Topics/ContainerTopicPage';
 import IntermediateResultPage from 'containers/IntermediateResult/ContainerIntermediateResultPage';
+import ResultPage from 'containers/Result/ContainerResultPage';
 
 import Layout from 'common/components/layout/ContainerLayout';
 import {createHashHistory} from 'history';
@@ -25,6 +26,7 @@ const views = {
     '/themes': SelectThemesScreen,
     '/topics': TopicsPage,
     '/progress': IntermediateResultPage,
+    '/result': ResultPage,
     '/404': NotFound
 };
 

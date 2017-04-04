@@ -51,7 +51,9 @@ export default function (state, action) {
                 }
             });
 
-            topics[activeThemeId].averageMark = Math.round(totalResult / totalMarks * 100) / 100;
+            const mark = Math.round(totalResult / totalMarks * 10) / 10;
+
+            topics[activeThemeId].averageMark = isNaN(mark) ? null : mark;
             setTimeout(() => window.location.hash = 'progress');
         }
 

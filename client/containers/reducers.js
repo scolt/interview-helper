@@ -26,6 +26,26 @@ function interview(state = model, action) {
     }, false);
 
     storage(candidate ? candidate : state, action);
+
+    if (action.type === 'clearStorageAndGoHome') {
+        return {
+            inProgress: false,
+            isLoading: false,
+            candidateName: 'Candidate',
+            activePositionId: null,
+            activeThemeId: null,
+            activeTopicId: null,
+
+            appliedThemes: [],
+
+            positions: [],
+            themes: [],
+
+            topics: {},
+            questions: {}
+        };
+    }
+
     return candidate ? candidate : state;
 }
 
