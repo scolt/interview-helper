@@ -12,6 +12,8 @@ import {
 
 import './topics.styl';
 
+import Questions from './components/suggestedQuestionBlock';
+
 const commonButtonStyles = {
     width: '23%',
     minWidth: '0',
@@ -83,6 +85,8 @@ const TopicPage = React.createClass({
                 <p className="topic-description">
                     {topic && topic.description}
                 </p>
+
+                <Questions topicId={topicId} />
 
                 <div className="align-center">
                     <h4>Set a mark for this topic:</h4>
