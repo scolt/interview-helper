@@ -3,7 +3,7 @@ import config from '../config/config';
 
 function restApi({model, id='', method='get', params = {}, type} = {}) {
     return (dispatch, getState) => {
-        const payload = getState()[model] && getState()[model].payload;
+        const payload = method === 'post' ? getState().interview.payload : null;
 
         dispatch({
             type: 'startProcessing',

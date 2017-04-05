@@ -6,6 +6,7 @@ import positionReducer from './PositionsScreen/positionReducer';
 import topicReducer from './Topics/topicReducer';
 import intermediateReducer from './IntermediateResult/intermediateReducer';
 import questionReducer from './Topics/components/questionsReducer';
+import resultReducer from './Result/resultReducer';
 import storageReducer from 'common/reducers/storageReducer';
 
 const STORAGE_KEY = 'intrvw-main';
@@ -16,7 +17,8 @@ const reducers = [
     positionReducer,
     topicReducer,
     intermediateReducer,
-    questionReducer
+    questionReducer,
+    resultReducer
 ];
 
 const storage = storageReducer(STORAGE_KEY, ['setAttribute', 'redirect', 'selectTheme', 'setTopicMark', 'goToNext']);
