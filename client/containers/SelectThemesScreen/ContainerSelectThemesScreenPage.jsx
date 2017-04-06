@@ -52,6 +52,7 @@ const PositionsPage = React.createClass({
             <div className="align-center">
                 <div className="button-action">
                     <RaisedButton
+                        fullWidth={true}
                         disabled={interview.activeThemeId === null}
                         onTouchTap={() => this.startInterview()}
                         primary={true}

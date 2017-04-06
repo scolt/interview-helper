@@ -68,7 +68,7 @@ const QuestionBlock = React.createClass({
 
 
         return <div>
-            {questionIsLoading ? <LinearProgress /> : content}
+            {questionIsLoading ? <div className="question-space"><LinearProgress /></div> : content}
         </div>;
     }
 });

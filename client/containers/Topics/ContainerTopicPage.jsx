@@ -18,28 +18,29 @@ import Questions from './components/suggestedQuestionBlock';
 const commonButtonStyles = {
     width: '23%',
     minWidth: '0',
-    margin: '0 1%'
+    margin: '0 1%',
+    height: '50px'
 };
 
 const marks = [
     {
         value: 0,
-        iconName: 'close',
+        iconName: 'star_border',
         activeColor: pink300
     },
     {
         value: 1,
-        iconName: 'remove',
+        iconName: 'star_half',
         activeColor: yellow700
     },
     {
         value: 2,
-        iconName: 'done',
+        iconName: 'star',
         activeColor: indigo300
     },
     {
         value: 3,
-        iconName: 'done_all',
+        iconName: 'star star',
         activeColor: green600
     }
 ];
@@ -98,15 +99,15 @@ const TopicPage = React.createClass({
                                     onTouchTap={() => this.setTopicMark(item.value)}
                                     backgroundColor={topic && topic.mark === item.value ? item.activeColor : null}
                                     style={commonButtonStyles}
-                                    icon={<FontIcon className="material-icons">{item.iconName}</FontIcon>}
+                                    icon={<FontIcon className="material-icons mark-text">{item.iconName}</FontIcon>}
                                 />
                             )
                         }
                     </div>
                 </div>
-            </div> : <div>There are no topics, please try to finish this theme</div>}
+            </div> : <div className="no-message">There are no topics, please try to finish this theme</div>}
 
-            <RaisedButton primary={true} label="Go Next" onTouchTap={this.openNext}/>
+            <RaisedButton fullWidth={true} primary={true} label="Go Next" onTouchTap={this.openNext}/>
         </div>;
 
         return <div>

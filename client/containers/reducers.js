@@ -32,7 +32,7 @@ function interview(state = model, action) {
 
     storage(candidate ? candidate : state, action);
 
-    if (action.type === 'clearStorageAndGoHome') {
+    if (action.type === 'clear') {
         return {
             inProgress: false,
             isLoading: false,

@@ -3,7 +3,10 @@ import memoryStorage from 'common/services/memoryStorage';
 import {STORAGE_KEY as interviewStorageKey} from 'containers/reducers';
 import {STORAGE_KEY as mainStorageKey} from 'common/reducers/mainReducer';
 
-export function finishInterview(dispatch, getState) {
+export function finishInterview(dispatch) {
+    dispatch({
+        type: 'clear'
+    });
     dispatch({
         type: 'redirect',
         path: 'main'

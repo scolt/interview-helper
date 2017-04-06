@@ -42,12 +42,12 @@ const IntermediateResultPage = React.createClass({
 
         return <div className="screen-container">
             <h3>Progress result for <i>{theme.title}</i></h3>
-            <div className="progress-details">
+            <div className="align-center">
                 <div className="av-mark" style={{borderColor: params.color}}>
                     {averageMark}
                 </div>
                 <div className="nextThemeButton">
-                    <RaisedButton label="Next step" primary={true} onTouchTap={this.openNextTheme}/>
+                    <RaisedButton fullWidth={true} label="Next theme" primary={true} onTouchTap={this.openNextTheme}/>
                 </div>
             </div>
             <List>

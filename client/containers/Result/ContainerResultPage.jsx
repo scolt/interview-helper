@@ -138,6 +138,7 @@ const IntermediateResultPage = React.createClass({
                         />
                         <div className="button-action">
                             <RaisedButton
+                                fullWidth={true}
                                 disabled={!interviewerEmail}
                                 onTouchTap={this.sendToEmail}
                                 primary={true}

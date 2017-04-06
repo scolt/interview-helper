@@ -31,11 +31,13 @@ const MainPage = React.createClass({
                 <TextField
                     className="name-input"
                     onChange={this.nameChange}
+                    fullWidth={true}
                     hintText="Interviewee Name"
                 />
                 <div className="button-action">
                     <RaisedButton
                         onTouchTap={this.openPositionsPage}
+                        fullWidth={true}
                         primary={true}
                         icon={<FontIcon className="material-icons">arrow_forward</FontIcon>}
                     />
