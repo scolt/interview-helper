@@ -35,34 +35,36 @@ export default function (state, action) {
             });
     }
 
-    if (action.type === 'goToNext') {
-        let {activeTopicId, activeThemeId} = state;
-        const topics = state.topics;
-        const currentTopicIndex = topics[activeThemeId].entities.findIndex(item => item.id == activeTopicId);
-        const possibleNextTopic = topics[activeThemeId].entities[currentTopicIndex + 1];
-        if (possibleNextTopic) {
-            activeTopicId = possibleNextTopic.id;
-        } else {
-            let totalMarks = 0, totalResult = 0;
-            topics[activeThemeId].entities.map(item => {
-                if (item.mark !== undefined) {
-                    totalMarks++;
-                    totalResult += parseInt(item.mark);
+    if (action.type === 'openNextTopic') {
+        let activeTopicId = action.topicId;
+        return update(
+            state,
+            {
+                $merge: {
+                    activeTopicId
                 }
             });
+    }
 
-            const mark = Math.round(totalResult / totalMarks * 10) / 10;
+    if (action.type === 'prepareIntermediateResult') {
+        let {activeThemeId, topics} = state;
+        let totalMarks = 0, totalResult = 0;
+        topics[activeThemeId].entities.map(item => {
+            if (item.mark !== undefined) {
+                totalMarks++;
+                totalResult += parseInt(item.mark);
+            }
+        });
 
-            topics[activeThemeId].averageMark = isNaN(mark) ? null : mark;
-            setTimeout(() => window.location.hash = 'progress');
-        }
+        const mark = Math.round(totalResult / totalMarks * 10) / 10;
+
+        topics[activeThemeId].averageMark = isNaN(mark) ? null : mark;
 
         return update(
             state,
             {
                 $merge: {
-                    topics,
-                    activeTopicId
+                    topics
                 }
             });
     }

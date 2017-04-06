@@ -1,5 +1,6 @@
 import React from 'react';
 import restApi from 'common/actions/restApi';
+import {nextTopic} from 'common/actions/topic';
 import withStore from 'common/components/withStore/withStore';
 import {LinearProgress, RaisedButton} from 'material-ui';
 import FontIcon from 'material-ui/FontIcon';
@@ -58,9 +59,7 @@ const TopicPage = React.createClass({
     },
 
     openNext() {
-        this.props.store.dispatch({
-            type: 'goToNext'
-        });
+        this.props.store.dispatch(nextTopic);
     },
 
     setTopicMark(value) {

@@ -1,5 +1,6 @@
 import React from 'react';
 import withStore from 'common/components/withStore/withStore';
+import {nextTheme} from 'common/actions/theme';
 import {RaisedButton, List, Subheader, ListItem, Divider} from 'material-ui';
 
 import './result.styl';
@@ -29,9 +30,7 @@ function getParams(value) {
 
 const IntermediateResultPage = React.createClass({
     openNextTheme() {
-        this.props.store.dispatch({
-            type: 'goToTheNextTheme'
-        });
+        this.props.store.dispatch(nextTheme);
     },
 
     render() {

@@ -1,23 +1,9 @@
 import update from 'react-addons-update';
 
 export default function (state, action) {
-    if (action.type === 'goToTheNextTheme') {
-        let {activeThemeId, appliedThemes, activeTopicId} = state;
-        const allChosenThemes = Object.keys(appliedThemes).reduce((prev, current) => {
-            if (appliedThemes[current]) prev.push(current);
-            return prev;
-        }, []);
-
-        const currentThemeIndex = allChosenThemes.indexOf(activeThemeId);
-        const possibleNextThemeId = allChosenThemes[currentThemeIndex + 1];
-        if (possibleNextThemeId) {
-            activeThemeId = possibleNextThemeId;
-            activeTopicId = null;
-            setTimeout(() => window.location.hash = 'topics');
-        } else {
-            setTimeout(() => window.location.hash = 'result');
-        }
-
+    if (action.type === 'openNextTheme') {
+        let activeThemeId = action.themeId;
+        let activeTopicId = null;
         return update(
             state,
             {
