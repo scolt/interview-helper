@@ -8,6 +8,8 @@ export function finishInterview(dispatch, getState) {
         type: 'redirect',
         path: 'main'
     });
+    memoryStorage.remove(interviewStorageKey);
+    memoryStorage.remove(mainStorageKey);
 }
 
 export function restoreLastPage(dispatch, getState) {

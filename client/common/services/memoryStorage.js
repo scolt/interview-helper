@@ -18,6 +18,7 @@ export default {
     },
 
     remove(key) {
+        clearTimeout(this.timeouts[key]);
         window.localStorage.removeItem(key);
     }
 };
