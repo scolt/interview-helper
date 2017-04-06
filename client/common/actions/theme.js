@@ -12,8 +12,14 @@ export function nextTheme(dispatch, getState) {
             type: 'openNextTheme',
             themeId: possibleNextThemeId
         });
-        setTimeout(() => window.location.hash = 'topics');
+        dispatch({
+            type: 'redirect',
+            path: 'topics'
+        });
     } else {
-        setTimeout(() => window.location.hash = 'result');
+        dispatch({
+            type: 'redirect',
+            path: 'result'
+        });
     }
 }

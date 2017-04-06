@@ -1,10 +1,9 @@
 export default {
-    timeout: null,
+    timeouts: {},
 
     set(key, value) {
-        clearTimeout(this.timeout);
-        this.timeout = setTimeout(() => {
-            console.log('set');
+        clearTimeout(this.timeouts[key]);
+        this.timeouts[key] = setTimeout(() => {
             window.localStorage.setItem(key, JSON.stringify(value));
         }, 1000);
     },

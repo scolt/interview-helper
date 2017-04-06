@@ -1,5 +1,6 @@
 import React from 'react';
 import withStore from 'common/components/withStore/withStore';
+import {finishInterview} from 'common/actions/interview';
 import {RaisedButton, List, Subheader, ListItem, Divider, TextField} from 'material-ui';
 import restApi from 'common/actions/restApi';
 
@@ -38,9 +39,7 @@ const IntermediateResultPage = React.createClass({
     },
 
     finishInterview() {
-        this.props.store.dispatch({
-            type: 'clearStorageAndGoHome'
-        });
+        this.props.store.dispatch(finishInterview);
     },
 
     emailChange(e) {
@@ -64,8 +63,6 @@ const IntermediateResultPage = React.createClass({
 
     render() {
         const {payload, interviewerEmail, emailSend} = this.props.data.interview;
-
-        console.log(emailSend);
 
         const content = payload && <div>
                 <h3>Summary result for <i>{payload.candidateName}</i>:</h3>

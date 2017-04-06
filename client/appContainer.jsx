@@ -11,39 +11,39 @@ import IntermediateResultPage from 'containers/IntermediateResult/ContainerInter
 import ResultPage from 'containers/Result/ContainerResultPage';
 
 import Layout from 'common/components/layout/ContainerLayout';
-import {createHashHistory} from 'history';
+import withStore from 'common/components/withStore/withStore';
+import {restoreLastPage} from 'common/actions/interview';
 
 import baseTheme from 'common/theme/cTheme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 const muiTheme = getMuiTheme(baseTheme);
 
-const appHistory = useRouterHistory(createHashHistory)();
-
 const views = {
-    '/': NameScreenPage,
-    '/positions': PositionsScreenPage,
-    '/themes': SelectThemesScreen,
-    '/topics': TopicsPage,
-    '/progress': IntermediateResultPage,
-    '/result': ResultPage,
-    '/404': NotFound
+    'main': <NameScreenPage />,
+    'positions': <PositionsScreenPage />,
+    'themes': <SelectThemesScreen />,
+    'topics': <TopicsPage />,
+    'progress': <IntermediateResultPage />,
+    'result': <ResultPage />,
+    '404': <NotFound />
 };
 
 const AppContainer = React.createClass({
+    componentDidMount() {
+        this.props.store.dispatch(restoreLastPage);
+    },
+
     render() {
+        const {currentRoute} = this.props.data.main;
         return (
             <MuiThemeProvider muiTheme={muiTheme}>
-                <ReactRouter history={appHistory}>
-                    <Route component={Layout}>
-                        {Object.keys(views).map(key => <Route key={key} path={key} component={views[key]}/>)}
-                    </Route>
-                    <Redirect from="/" to="/main"/>
-                    <Redirect from="*" to="/404"/>
-                </ReactRouter>
+                <Layout>
+                    {views[currentRoute] || views['404']}
+                </Layout>
             </MuiThemeProvider>
         );
     }
 });
 
-export default AppContainer;
+export default withStore(AppContainer);

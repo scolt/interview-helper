@@ -1,5 +1,4 @@
 import update from 'react-addons-update';
-import memoryStorage from 'common/services/memoryStorage';
 
 export default function (state, action, storageKey) {
     if (action.type === 'setAttribute') {
@@ -9,8 +8,7 @@ export default function (state, action, storageKey) {
     }
 
     if (action.type === 'tryToRestore') {
-        const newData = memoryStorage.get(storageKey);
-        return update(state, {$merge: newData});
+        return update(state, {$merge: action.state});
     }
 
     return false;

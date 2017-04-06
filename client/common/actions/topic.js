@@ -11,6 +11,9 @@ export function nextTopic(dispatch, getState) {
         dispatch({
             type: 'prepareIntermediateResult'
         });
-        setTimeout(setTimeout(() => window.location.hash = 'progress'));
+        dispatch({
+            type: 'redirect',
+            path: 'progress'
+        });
     }
 }

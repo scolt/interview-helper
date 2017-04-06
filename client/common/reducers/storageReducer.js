@@ -8,7 +8,6 @@ export default function (storageKey, actionsForSet) {
 
         if (action.type === 'clearStorageAndGoHome') {
             memoryStorage.remove(storageKey);
-            setTimeout(() => window.location.hash = '');
         }
     };
 }
