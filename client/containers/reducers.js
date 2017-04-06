@@ -9,7 +9,8 @@ import questionReducer from './Topics/components/questionsReducer';
 import resultReducer from './Result/resultReducer';
 import storageReducer from 'common/reducers/storageReducer';
 
-export const STORAGE_KEY = 'intrvw-main';
+import config from 'common/config/config';
+export const STORAGE_KEY = 'intrvw-main-' + config.version;
 
 const reducers = [
     interviewReducer,
