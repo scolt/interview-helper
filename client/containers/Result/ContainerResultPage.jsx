@@ -72,18 +72,53 @@ const IntermediateResultPage = React.createClass({
                 <p>Applied themes: {payload.appliedResultThemes.map(item =>
                     <span key={item.title.toLowerCase()}><strong>{item.title}</strong>, &nbsp;</span>)} </p>
 
-                <p>
-                    <strong>What was good:</strong><br />
-                    <i>{payload.candidateName}</i> shown himself as specialist with good understanding in next
-                    topics:&nbsp;
-                    {payload.sorted.good.map(goodItem => `"${goodItem}", `)}
-                </p>
+                {payload.sorted.good.length && <div>
+                    <p>
+                        <strong>What was good:</strong><br />
+                        <i>{payload.candidateName}</i> shown himself as specialist with good understanding in next
+                        topics:&nbsp;
+                    </p>
+                    <ul>
+                        {payload.sorted.good.map(goodItem => goodItem.topics.length > 0 &&
+                            <li
+                                id={`theme-${goodItem.title.replace(' ', '')}`}
+                                key={`theme-${goodItem.title.replace(' ', '')}`}>
+                                <strong>{goodItem.title}:</strong> "{goodItem.topics.join('", "')}"
+                            </li>)}
+                    </ul>
+                </div>}
 
-                <p>
-                    <strong>What should be improved:</strong><br />
-                    <i>{payload.candidateName}</i> have a lot of gaps in next topics:&nbsp;
-                    {payload.sorted.bad.map(badItem => `"${badItem}", `)}
-                </p>
+                {payload.sorted.poor.length && <div>
+                    <p>
+                        <strong>What should be improved:</strong><br />
+                        <i>{payload.candidateName}</i> have poor knowledge and some misunderstandings in next topics:&nbsp;
+                    </p>
+                    <ul>
+                        {payload.sorted.poor.map(poorItem => poorItem.topics.length > 0 &&
+                        <li
+                            id={`theme-${poorItem.title.replace(' ', '')}`}
+                            key={`theme-${poorItem.title.replace(' ', '')}`}>
+                            <strong>{poorItem.title}:</strong> "{poorItem.topics.join('", "')}"
+                        </li>)}
+                    </ul>
+                </div>}
+
+                {payload.sorted.bad.length && <div>
+                    <p>
+                        <i>{payload.candidateName}</i> have a lot of gaps in next topics:&nbsp;
+                    </p>
+                    <ul>
+                        {payload.sorted.bad.map(badItem => badItem.topics.length > 0 &&
+                        <li
+                            id={`theme-${badItem.title.replace(' ', '')}`}
+                            key={`theme-${badItem.title.replace(' ', '')}`}>
+                            <strong>{badItem.title}:</strong> "{badItem.topics.join('", "')}"
+                        </li>)}
+                    </ul>
+                </div>}
+
+
+
 
                 <p>
                     <strong>Summary:</strong><br />

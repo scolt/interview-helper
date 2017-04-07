@@ -27,8 +27,6 @@ let plugins = [
     new StringReplacePlugin()
 ];
 
-if (!isDev) plugins.push(new webpack.optimize.UglifyJsPlugin({minimize: true}));
-
 const webpackInitialization = function (env) {
     const isDev = !env || (env && !env.prod);
     const definitions = new webpack.DefinePlugin({

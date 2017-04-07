@@ -22,7 +22,16 @@ const reducers = [
     resultReducer
 ];
 
-const storage = storageReducer(STORAGE_KEY, ['setAttribute', 'redirect', 'selectTheme', 'setTopicMark', 'goToNext']);
+const storage = storageReducer(STORAGE_KEY, [
+    'setAttribute',
+    'redirect',
+    'selectTheme',
+    'setTopicMark',
+    'goToNext',
+    'openNextTopic',
+    'openNextTheme',
+    'endProcessing'
+]);
 
 function interview(state = model, action) {
     const candidate = reducers.reduce((prevValue, current) => {

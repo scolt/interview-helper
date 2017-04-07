@@ -6,9 +6,9 @@ export default function (state, action) {
     }
 
     if (action.type === 'endProcessing' && action.reqData.model === 'themes') {
-        const appliedThemes = {};
+        const appliedThemes = [];
         action.resData.forEach(item => {
-            appliedThemes[item.id] = true;
+            appliedThemes.push(item.id);
         });
 
         return update(
@@ -18,25 +18,35 @@ export default function (state, action) {
                     isLoading: false,
                     themes: [...action.resData],
                     appliedThemes: appliedThemes,
-                    activeThemeId: Object.keys(appliedThemes)[0]
+                    activeThemeId: appliedThemes[0]
                 }
             });
     }
 
     if (action.type === 'selectTheme') {
-        let {appliedThemes, activeThemeId} = state;
-        activeThemeId = null;
-        appliedThemes[action.field] = action.value;
-        Object.keys(appliedThemes).forEach(key => {
-            if (appliedThemes[key] && activeThemeId === null) {
-                activeThemeId = key;
-            }
+        let {appliedThemes, activeThemeId, themes} = state;
+
+        const tmpAppliedThemes = [];
+
+        if (action.value) {
+            appliedThemes.push(action.field);
+        } else {
+            const indexToDelete = appliedThemes.findIndex(item => item === action.field);
+            appliedThemes.splice(indexToDelete, 1);
+        }
+
+
+        themes.forEach(item => {
+            if (appliedThemes.includes(item.id)) tmpAppliedThemes.push(item.id);
         });
+
+        activeThemeId = tmpAppliedThemes[0];
+
         return update(
             state,
             {
                 $merge: {
-                    appliedThemes: {...appliedThemes},
+                    appliedThemes: tmpAppliedThemes,
                     activeThemeId: activeThemeId
                 }
             });

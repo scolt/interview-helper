@@ -30,7 +30,6 @@ const PositionsPage = React.createClass({
 
     render() {
         const interview = this.props.data.interview;
-
         const mainContent = <div>
             <h3 className="align-center">Choose the suitable topics</h3>
             <List>
@@ -41,7 +40,7 @@ const PositionsPage = React.createClass({
                         primaryText={item.title}
                         leftCheckbox={
                             <Checkbox
-                                checked={interview.appliedThemes[item.id]}
+                                checked={interview.appliedThemes && interview.appliedThemes.indexOf(item.id) > -1}
                                 onCheck={(e, isInputChecked) => this.selectTheme(item.id, isInputChecked)}
                             />
                         }

@@ -16,6 +16,7 @@ export default function (state, action) {
 
         const sorted = {
             good: [],
+            poor: [],
             bad: []
         };
 
@@ -26,6 +27,20 @@ export default function (state, action) {
             if (topics[theme.id] && typeof topics[theme.id].averageMark === 'number') {
                 totalMarks++;
                 totalResult += +topics[theme.id].averageMark;
+
+                const good = {
+                    title: theme.title,
+                    topics: []
+                };
+                const bad = {
+                    title: theme.title,
+                    topics: []
+                };
+                const poor = {
+                    title: theme.title,
+                    topics: []
+                };
+
                 appliedResultThemes.push({
                     id: theme.id,
                     title: theme.title,
@@ -34,9 +49,11 @@ export default function (state, action) {
                         typeof topic.mark === 'number'
                     ).map(topic => {
                         if (topic.mark >= 2) {
-                            sorted.good.push(topic.title);
-                        } else if (topic.mark <= 1) {
-                            sorted.bad.push(topic.title);
+                            good.topics.push(topic.title);
+                        } else if (topic.mark === 1) {
+                            poor.topics.push(topic.title);
+                        } else {
+                            bad.topics.push(topic.title);
                         }
 
                         return {
@@ -45,6 +62,12 @@ export default function (state, action) {
                         };
                     })
                 });
+
+                if (good.topics.length) sorted.good.push(good);
+                if (poor.topics.length) sorted.poor.push(poor);
+                if (bad.topics.length) sorted.bad.push(bad);
+
+
             }
         });
 

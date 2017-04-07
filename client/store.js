@@ -6,8 +6,8 @@ import main from 'common/reducers/mainReducer';
 
 const store = createStore(
     combineReducers({
-        interview,
-        main
+        main,
+        interview
     }),
     applyMiddleware(thunkMiddleware)
 );

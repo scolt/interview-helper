@@ -1,6 +1,6 @@
 import update from 'react-addons-update';
 
-export default function (state, action, storageKey) {
+export default function (state, action) {
     if (action.type === 'setAttribute') {
         const newData = {};
         newData[action.field] = action.value;
