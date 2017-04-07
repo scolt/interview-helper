@@ -1,5 +1,6 @@
 import 'index.html';
 import 'common/styl/global.styl';
+import 'favicon.png';
 
 import React from 'react';
 import AppContainer from 'appContainer';
