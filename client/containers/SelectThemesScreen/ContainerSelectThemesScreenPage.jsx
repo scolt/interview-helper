@@ -52,7 +52,7 @@ const PositionsPage = React.createClass({
                 <div className="button-action">
                     <RaisedButton
                         fullWidth={true}
-                        disabled={interview.activeThemeId === null}
+                        disabled={interview.activeThemeId === undefined}
                         onTouchTap={() => this.startInterview()}
                         primary={true}
                         icon={<FontIcon className="material-icons">arrow_forward</FontIcon>}

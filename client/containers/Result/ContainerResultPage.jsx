@@ -72,7 +72,7 @@ const IntermediateResultPage = React.createClass({
                 <p>Applied themes: {payload.appliedResultThemes.map(item =>
                     <span key={item.title.toLowerCase()}><strong>{item.title}</strong>, &nbsp;</span>)} </p>
 
-                {payload.sorted.good.length && <div>
+                {payload.sorted.good.length ? <div>
                     <p>
                         <strong>What was good:</strong><br />
                         <i>{payload.candidateName}</i> shown himself as specialist with good understanding in next
@@ -86,9 +86,9 @@ const IntermediateResultPage = React.createClass({
                                 <strong>{goodItem.title}:</strong> "{goodItem.topics.join('", "')}"
                             </li>)}
                     </ul>
-                </div>}
+                </div> : null}
 
-                {payload.sorted.poor.length && <div>
+                {payload.sorted.poor.length ? <div>
                     <p>
                         <strong>What should be improved:</strong><br />
                         <i>{payload.candidateName}</i> have poor knowledge and some misunderstandings in next topics:&nbsp;
@@ -101,9 +101,9 @@ const IntermediateResultPage = React.createClass({
                             <strong>{poorItem.title}:</strong> "{poorItem.topics.join('", "')}"
                         </li>)}
                     </ul>
-                </div>}
+                </div> : null}
 
-                {payload.sorted.bad.length && <div>
+                {payload.sorted.bad.length ? <div>
                     <p>
                         <i>{payload.candidateName}</i> have a lot of gaps in next topics:&nbsp;
                     </p>
@@ -115,10 +115,7 @@ const IntermediateResultPage = React.createClass({
                             <strong>{badItem.title}:</strong> "{badItem.topics.join('", "')}"
                         </li>)}
                     </ul>
-                </div>}
-
-
-
+                </div> : null}
 
                 <p>
                     <strong>Summary:</strong><br />
@@ -138,6 +135,7 @@ const IntermediateResultPage = React.createClass({
                                 leftAvatar={<span className="list-mark"
                                                   style={{color: getParams(theme.themeMark).color}}>{theme.themeMark}</span>}
                                 primaryText={theme.title}
+                                primaryTogglesNestedList={true}
                                 nestedItems={theme.topics.map(topic =>
                                     <ListItem key={topic.title.toLowerCase().replace(' ', '')}
                                               id={topic.title.toLowerCase().replace(' ', '')}

@@ -1,4 +1,4 @@
 export default  {
-    version: '1.0',
+    version: '0.2',
     restURL: 'https://project.webtech.by'
 };
