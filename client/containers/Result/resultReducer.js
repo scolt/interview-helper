@@ -8,6 +8,15 @@ export default function (state, action) {
         });
     }
 
+    if (action.type === 'restoreEmail') {
+        return update(state, {
+            $merge: {
+                emailSend: false,
+                interviewerEmail: ''
+            }
+        });
+    }
+
     if (action.type === 'preparePayload') {
         const {candidateName, activePositionId, positions, themes, topics, interviewerEmail} = state;
 

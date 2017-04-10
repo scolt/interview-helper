@@ -5,14 +5,32 @@ import {STORAGE_KEY as mainStorageKey} from 'common/reducers/mainReducer';
 
 export function finishInterview(dispatch) {
     dispatch({
-        type: 'clear'
+        type: 'openModal',
+        modalText: 'Are you sure you want to finish interview and clear whole interview data. You can\'t undo this action.',
+        modalType: 'warning',
+        confirmText: 'Finish',
+        cancelText: 'Cancel',
+        modalSubmit: () => {
+            dispatch({
+                type: 'clear'
+            });
+            dispatch({
+                type: 'redirect',
+                path: 'main'
+            });
+            dispatch({
+                type: 'closeModal'
+            });
+            memoryStorage.remove(interviewStorageKey);
+            memoryStorage.remove(mainStorageKey);
+        },
+        modalClose: () => {
+            dispatch({
+                type: 'closeModal'
+            });
+        }
     });
-    dispatch({
-        type: 'redirect',
-        path: 'main'
-    });
-    memoryStorage.remove(interviewStorageKey);
-    memoryStorage.remove(mainStorageKey);
+
 }
 
 export function restoreLastPage(dispatch, getState) {

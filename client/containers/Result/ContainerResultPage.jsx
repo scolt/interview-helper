@@ -50,6 +50,12 @@ const IntermediateResultPage = React.createClass({
         });
     },
 
+    restoreEmail() {
+        this.props.store.dispatch({
+            type: 'restoreEmail'
+        });
+    },
+
     sendToEmail() {
         this.props.store.dispatch({
             type: 'preparePayload'
@@ -153,15 +159,15 @@ const IntermediateResultPage = React.createClass({
                     <div className="av-mark" style={{borderColor: getParams(payload.globalMark).color}}>
                         {payload.globalMark}
                     </div>
-                    <div className="nextThemeButton">
-                        <RaisedButton fullWidth={true} label="Finish" primary={true} onTouchTap={this.finishInterview}/>
-                    </div>
                 </div>
 
                 <br/>
-                <br/>
 
-                {emailSend ? 'Your email was send.' : <div><h3>Send the report to email</h3>
+                {emailSend ? <div className="success-email-send">
+                    <FontIcon className="material-icons">email</FontIcon>
+                    <span>Your email was sent.</span>
+                    <a><FontIcon className="material-icons" onTouchTap={this.restoreEmail}>settings_backup_restore</FontIcon></a>
+                </div> : <div><h3>Send the report to email</h3>
                     <div className="align-center">
                         <TextField
                             className="name-input"
@@ -179,7 +185,16 @@ const IntermediateResultPage = React.createClass({
                             />
                         </div>
                     </div>
+                    <br />
                 </div>}
+
+
+                <div>
+                    <br />
+                    <h3>Finish the interview</h3>
+                    <RaisedButton fullWidth={true} label="Finish" primary={true} onTouchTap={this.finishInterview}/>
+                </div>
+
 
             </div>;
 

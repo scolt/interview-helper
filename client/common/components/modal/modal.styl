@@ -1,0 +1,49 @@
+.modal-overlay
+    position fixed
+    top 0
+    bottom 0
+    left 0
+    right 0
+    background rgba(0,0,0,0.5)
+    z-index 50
+
+.modal
+    position absolute
+    background #fff
+    top 50%
+    left 50%
+    max-width 90%
+    width 400px
+    transform translate(-50%, -50%)
+
+.modal-header
+    background #e53935
+    color #fff
+    padding 8px
+    font-size 20px
+    text-transform capitalize
+    display flex
+    justify-content space-between
+
+    .material-icons
+        color #fff !important
+
+.modal-body
+    padding 10px
+
+    .main-message
+        display flex
+        align-items: center;
+
+    .icon .material-icons
+        font-size 40px !important
+        padding-right 20px
+
+.modal-footer
+    display flex
+    & > *
+        width 50%
+
+.warning
+    .icon .material-icons
+        color #e53935 !important
