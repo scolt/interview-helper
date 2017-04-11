@@ -4,10 +4,11 @@ import model from './ModelModal';
 
 export default function main(state = model, action) {
     if (action.type === 'openModal') {
-        const {modalText, modalType, modalSubmit, modalClose, confirmText, cancelText} = action;
+        const {modalText, showIcon, modalType, modalSubmit, modalClose, confirmText, cancelText} = action;
         return update(state, {
             $merge: {
                 open: true,
+                showIcon: showIcon || false,
                 modalText: modalText || '',
                 modalType: modalType || 'info',
                 confirmText: confirmText || '',

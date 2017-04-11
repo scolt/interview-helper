@@ -1,5 +1,8 @@
 import React from 'react';
 import restApi from 'common/actions/restApi';
+
+import {openMarkHelpModal} from 'common/actions/modals';
+
 import {nextTopic} from 'common/actions/topic';
 import withStore from 'common/components/withStore/withStore';
 import {LinearProgress, RaisedButton} from 'material-ui';
@@ -63,6 +66,10 @@ const TopicPage = React.createClass({
         this.props.store.dispatch(nextTopic);
     },
 
+    openMarkHelp() {
+        this.props.store.dispatch(openMarkHelpModal);
+    },
+
     setTopicMark(value) {
         this.props.store.dispatch({
             type: 'setTopicMark',
@@ -88,8 +95,11 @@ const TopicPage = React.createClass({
 
                 <Questions topicId={topicId} />
 
-                <div className="align-center">
-                    <h4>Set a mark for this topic:</h4>
+                <div className="align-center mark-container">
+                    <h4 onTouchTap={this.openMarkHelp}>
+                        <FontIcon className="material-icons">help_outline</FontIcon>
+                        Set a mark for this topic:
+                    </h4>
                     <div className="marks">
                         {
                             marks.map(item =>

@@ -8,6 +8,7 @@ export function finishInterview(dispatch) {
         type: 'openModal',
         modalText: 'Are you sure you want to finish interview and clear whole interview data. You can\'t undo this action.',
         modalType: 'warning',
+        showIcon: true,
         confirmText: 'Finish',
         cancelText: 'Cancel',
         modalSubmit: () => {

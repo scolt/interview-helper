@@ -1,5 +1,4 @@
 import React from 'react';
-import 'icon.png';
 
 import MaterialModal from '../modal/MaterialModal';
 
