@@ -65,9 +65,9 @@ export default function (state, action) {
                     topics: topics[theme.id].entities.filter(topic =>
                         typeof topic.mark === 'number'
                     ).map(topic => {
-                        if (topic.mark >= 2) {
+                        if (topic.mark >= 4) {
                             good.topics.push(topic.title);
-                        } else if (topic.mark === 1) {
+                        } else if (topic.mark >= 2) {
                             poor.topics.push(topic.title);
                         } else {
                             bad.topics.push(topic.title);
@@ -92,11 +92,11 @@ export default function (state, action) {
 
         let qualification = 'no';
 
-        if (globalMark > 2) {
+        if (globalMark >= 4) {
             qualification =  'high';
-        } else if (globalMark > 1.5) {
+        } else if (globalMark >= 3) {
             qualification = 'medium';
-        } else if (globalMark > 0.8) {
+        } else if (globalMark >= 2) {
             qualification = 'low';
         }
 

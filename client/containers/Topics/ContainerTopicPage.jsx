@@ -11,7 +11,8 @@ import {
     pink300,
     yellow700,
     indigo300,
-    green600
+    green400,
+    teal300
 } from 'material-ui/styles/colors';
 
 import './topics.styl';
@@ -27,24 +28,29 @@ const commonButtonStyles = {
 
 const marks = [
     {
-        value: 0,
-        iconName: 'star_border',
+        value: 1,
+        iconName: 'not_interested',
         activeColor: pink300
     },
     {
-        value: 1,
-        iconName: 'star_half',
+        value: 2,
+        iconName: 'star_border',
         activeColor: yellow700
     },
     {
-        value: 2,
+        value: 3,
+        iconName: 'star_half',
+        activeColor: teal300
+    },
+    {
+        value: 4,
         iconName: 'star',
         activeColor: indigo300
     },
     {
-        value: 3,
-        iconName: 'star star',
-        activeColor: green600
+        value: 5,
+        iconName: 'stars',
+        activeColor: green400
     }
 ];
 

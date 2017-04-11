@@ -14,11 +14,11 @@ import {
 
 function getParams(value) {
     let color = pink300;
-    if (value > 2.5) {
+    if (value > 4) {
         color = green600;
-    } else if (value > 1.9) {
+    } else if (value > 3) {
         color = indigo300;
-    } else if (value > 1.2) {
+    } else if (value > 1.5) {
         color = yellow700;
     } else {
         color = pink300;
