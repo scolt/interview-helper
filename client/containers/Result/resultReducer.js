@@ -8,6 +8,14 @@ export default function (state, action) {
         });
     }
 
+    if (action.type === 'endProcessing' && action.reqData.model === 'report') {
+        return update(state, {
+            $merge: {
+                directLink: action.resData.url
+            }
+        });
+    }
+
     if (action.type === 'restoreEmail') {
         return update(state, {
             $merge: {

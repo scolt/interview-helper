@@ -42,11 +42,11 @@ const IntermediateResultPage = React.createClass({
         this.props.store.dispatch(finishInterview);
     },
 
-    emailChange(e) {
+    emailChange(e, newValue) {
         this.props.store.dispatch({
             type: 'setAttribute',
             field: 'interviewerEmail',
-            value: e.target.value
+            value: newValue
         });
     },
 
@@ -67,9 +67,19 @@ const IntermediateResultPage = React.createClass({
         }));
     },
 
-    render() {
-        const {payload, interviewerEmail, emailSend} = this.props.data.interview;
+    getDirectLink() {
+        this.props.store.dispatch({
+            type: 'preparePayload'
+        });
 
+        this.props.store.dispatch(restApi({
+            method: 'post',
+            model: 'report'
+        }));
+    },
+
+    render() {
+        const {payload, interviewerEmail, emailSend, validators, directLink} = this.props.data.interview;
         const content = payload && <div>
                 <h3>Summary result for <i>{payload.candidateName}</i>:</h3>
                 <p>
@@ -163,31 +173,44 @@ const IntermediateResultPage = React.createClass({
 
                 <br/>
 
+                <h3>Save the report</h3>
                 {emailSend ? <div className="success-email-send">
                     <FontIcon className="material-icons">email</FontIcon>
                     <span>Your email was sent.</span>
-                    <a><FontIcon className="material-icons" onTouchTap={this.restoreEmail}>settings_backup_restore</FontIcon></a>
-                </div> : <div><h3>Send the report to email</h3>
+                    <a className="action"><FontIcon className="material-icons" onTouchTap={this.restoreEmail}>settings_backup_restore</FontIcon></a>
+                </div> : <div>
                     <div className="align-center">
                         <TextField
                             className="name-input"
                             onChange={this.emailChange}
                             fullWidth={true}
+                            value={interviewerEmail}
                             hintText="Interviewer Email"
                         />
                         <div className="button-action">
                             <RaisedButton
                                 fullWidth={true}
-                                disabled={!interviewerEmail}
+                                label="Send the report to email"
+                                disabled={validators.interviewerEmail.error}
                                 onTouchTap={this.sendToEmail}
                                 primary={true}
                                 icon={<FontIcon className="material-icons">email</FontIcon>}
                             />
                         </div>
                     </div>
-                    <br />
                 </div>}
 
+                <br />
+                {directLink ? <div className="success-email-send">
+                    <FontIcon className="material-icons">link</FontIcon>
+                    <a href={directLink} target="_blank">Direct link to the report</a>
+                </div> : <RaisedButton
+                    fullWidth={true}
+                    secondary={true}
+                    onTouchTap={this.getDirectLink}
+                    label="Get direct link to report"
+                    icon={<FontIcon className="material-icons">link</FontIcon>}
+                />}
 
                 <div>
                     <br />

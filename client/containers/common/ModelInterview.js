@@ -3,6 +3,14 @@ const interview = {
     isLoading: false,
     questionIsLoading: false,
     emailSend: false,
+    directLink: '',
+
+    validators: {
+        interviewerEmail: {
+            error: true,
+            testQuery: '.+@.+\..+'
+        }
+    },
 
     candidateName: 'Candidate',
     interviewerEmail: '',

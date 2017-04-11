@@ -45,10 +45,22 @@ function interview(state = model, action) {
         return {
             inProgress: false,
             isLoading: false,
+            questionIsLoading: false,
+            emailSend: false,
+
+            validators: {
+                interviewerEmail: {
+                    error: true,
+                    testQuery: '.+@.+\\..+'
+                }
+            },
+
             candidateName: 'Candidate',
+            interviewerEmail: '',
             activePositionId: null,
             activeThemeId: null,
             activeTopicId: null,
+            directLink: '',
 
             appliedThemes: [],
 
