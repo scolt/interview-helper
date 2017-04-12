@@ -1,6 +1,6 @@
 Interview Helper
 ------------------------
-[Live Demo](https://test.webtech.by/interview/#/) - v0.1
+[Live Demo](https://interview.webtech.by/) - v0.3
 
 
 1.Set up environment.
