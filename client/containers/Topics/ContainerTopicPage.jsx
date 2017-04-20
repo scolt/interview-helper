@@ -76,6 +76,13 @@ const TopicPage = React.createClass({
         this.props.store.dispatch(openMarkHelpModal);
     },
 
+    setThemeMark(value) {
+        this.props.store.dispatch({
+            type: 'setThemeMark',
+            value
+        });
+    },
+
     setTopicMark(value) {
         this.props.store.dispatch({
             type: 'setTopicMark',
@@ -84,11 +91,12 @@ const TopicPage = React.createClass({
     },
 
     render() {
+        const {topics} = this.props.data.interview;
         const themeId = this.props.data.interview.activeThemeId;
         const topicId = this.props.data.interview.activeTopicId;
 
-        const topic = this.props.data.interview.topics[themeId] ?
-            this.props.data.interview.topics[themeId].entities.find(item => item.id == topicId) : {};
+        const topic = topics[themeId] ?
+            topics[themeId].entities.find(item => item.id == topicId) : {};
 
         const theme = this.props.data.interview.themes.find(item => item.id == themeId);
 
@@ -99,7 +107,7 @@ const TopicPage = React.createClass({
                     {topic && topic.description}
                 </p>
 
-                <Questions topicId={topicId} />
+                <Questions topicId={topicId}/>
 
                 <div className="align-center mark-container">
                     <h4 onTouchTap={this.openMarkHelp}>
@@ -121,7 +129,25 @@ const TopicPage = React.createClass({
                         }
                     </div>
                 </div>
-            </div> : <div className="no-message">There are no topics, please try to finish this theme</div>}
+            </div> : <div>
+                <div className="no-message">There are no topics, please try to set global mark for this theme and finish
+                    this theme
+                </div>
+                <div className="marks">
+                    {
+                        marks.map(item =>
+                            <RaisedButton
+                                key={`set-mark-${item.value}`}
+                                id={`set-mark-${item.value}`}
+                                onTouchTap={() => this.setThemeMark(item.value)}
+                                backgroundColor={topics[theme.id] && topics[theme.id].averageMark === item.value ? item.activeColor : null}
+                                style={commonButtonStyles}
+                                icon={<FontIcon className="material-icons mark-text">{item.iconName}</FontIcon>}
+                            />
+                        )
+                    }
+                </div>
+            </div>}
 
             <RaisedButton fullWidth={true} primary={true} label="Go Next" onTouchTap={this.openNext}/>
         </div>;

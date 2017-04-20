@@ -22,6 +22,18 @@ export default function (state, action) {
             });
     }
 
+    if (action.type === 'setThemeMark') {
+        let {activeThemeId, topics} = state;
+        topics[activeThemeId].averageMark = action.value;
+        return update(
+            state,
+            {
+                $merge: {
+                    topics
+                }
+            });
+    }
+
     if (action.type === 'setTopicMark') {
         let {activeTopicId, activeThemeId, topics} = state;
         const currentTopic = topics[activeThemeId].entities.find(item => item.id == activeTopicId);
@@ -58,7 +70,7 @@ export default function (state, action) {
 
         const mark = Math.round(totalResult / totalMarks * 10) / 10;
 
-        topics[activeThemeId].averageMark = isNaN(mark) ? null : mark;
+        topics[activeThemeId].averageMark = isNaN(mark) ? topics[activeThemeId].averageMark : mark;
 
         return update(
             state,

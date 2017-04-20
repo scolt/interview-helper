@@ -80,6 +80,16 @@ export default function (state, action) {
                     })
                 });
 
+                if (!good.topics.length && !bad.topics.length && !poor.topics.length) {
+                    if (topics[theme.id].averageMark >= 4) {
+                        good.topics.push('overall');
+                    } else if (topics[theme.id].averageMark >= 2) {
+                        poor.topics.push('overall');
+                    } else {
+                        bad.topics.push('overall');
+                    }
+                }
+
                 if (good.topics.length) sorted.good.push(good);
                 if (poor.topics.length) sorted.poor.push(poor);
                 if (bad.topics.length) sorted.bad.push(bad);
