@@ -21,5 +21,5 @@ To execute test cases you need:
 3.API
 ------------------------
 This app is using interview api developed by using PHP and Mysql. 
-Right now API located [here](http://project.webtech.by/)
+Right now API located [here](https://interview.webtech.by/api/)
 Ability to add new positions/questions/themes/topics available only for admin.
